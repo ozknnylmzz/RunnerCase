@@ -12,7 +12,7 @@ public class GameManager : MonoBehaviour
     [SerializeField] float offsetZ = 10f;
   
 
-    float[] PosX;
+    [SerializeField] float[] PosX;
 
     float yPos = 1f;
     float zPos = 20;
@@ -24,10 +24,8 @@ public class GameManager : MonoBehaviour
     void Start()
     {
         Time.timeScale = 0;
-        PosX = new float[3];
-        PosX[0] = -1.5f;
-        PosX[1] = .5f;
-        PosX[2] = 2f;
+        
+     
 
 
         collectObjCreated();
@@ -44,10 +42,19 @@ public class GameManager : MonoBehaviour
 
             foreach (GameObject item in Objects)
             {
+                if (a == 3)
+                {
+                    a = 0;
+                    zPos += offsetZ;
+                }
                 for (int b = 0; b < 5; b++)
                 {
+                    
                     Instantiate(item, new Vector3(PosX[a], yPos, zPos + t), Quaternion.identity);
                     t++;
+                   
+                   
+                   
                 }
                 a++;
                 t = 0;

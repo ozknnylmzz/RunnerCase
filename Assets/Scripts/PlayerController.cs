@@ -6,8 +6,8 @@ using UnityEngine.UI;
 public class PlayerController : MonoBehaviour
 {
     [SerializeField] GameObject Currency;
-    [SerializeField] ParticleSystem Gold;
-    [SerializeField] ParticleSystem Diamond;
+    ParticleSystem[] Particles;
+   
     [SerializeField] Slider LevelBar;
     [SerializeField] Text CurrentLeveltxt;
     [SerializeField] Text NextLevel;
@@ -21,11 +21,15 @@ public class PlayerController : MonoBehaviour
 
     void Start()
     {
-
+        Particles = new ParticleSystem[4];
         LoadGameData();
         animator = GetComponentInChildren<Animator>();
         TopPlayScreen = GameObject.Find("TopPlayScreen");
         LevelEndScreen = GameObject.Find("LevelEndScreen");
+        Particles[0] = GetComponentsInChildren<ParticleSystem>()[0];
+        Particles[1] = GetComponentsInChildren<ParticleSystem>()[1];
+        Particles[2] = GetComponentsInChildren<ParticleSystem>()[2];
+        Particles[3] = GetComponentsInChildren<ParticleSystem>()[3];
 
 
 
@@ -53,7 +57,7 @@ public class PlayerController : MonoBehaviour
         {
 
             animator.SetBool("hasState", false);
-
+            
             Destroy(other.gameObject);
 
             //player üstünde particle ve ses
@@ -62,7 +66,7 @@ public class PlayerController : MonoBehaviour
         }
         if (other.CompareTag("Diamond"))
         {
-
+           
             animator.SetBool("hasState", false);
 
             Destroy(other.gameObject);
@@ -77,7 +81,8 @@ public class PlayerController : MonoBehaviour
             animator.SetBool("hasState", true);
             GameInfo.CurrentGoldAmount++;
             //goldtxt.text = goldAmount.ToString();
-            Gold.Play();
+            Particles[1].Play();
+            Particles[2].Play();
             //player üstünde particle ve ses
             //altýn objesýný yok et 
             //uý kýsmýný setle
@@ -89,14 +94,15 @@ public class PlayerController : MonoBehaviour
             animator.SetBool("hasState", true);
 
             GameInfo.CurrentDiamondAmount++;
-            Diamond.Play();
+            Particles[0].Play();
+            Particles[3].Play();
 
         }
         if (other.CompareTag("Obstacle"))
         {
             if (GameInfo.CurrentGoldAmount > 0) GameInfo.CurrentGoldAmount--;
             if (GameInfo.CurrentDiamondAmount > 0) GameInfo.CurrentDiamondAmount--;
-
+            Particles[3].Play();
             levelBarValue--;
             LevelBar.value = levelBarValue;
 
@@ -111,7 +117,7 @@ public class PlayerController : MonoBehaviour
         }
     }
 
-
+    
 
     private void OnApplicationQuit()
     {
@@ -125,6 +131,7 @@ public class PlayerController : MonoBehaviour
         PlayerPrefs.SetInt("DiamondAmount", GameInfo.DiamondAmount);
         //PlayerPrefs.SetInt("CurrentGoldUpgrade", GameInfo.CurrentGoldAmount);
         //PlayerPrefs.SetInt("CurrentDiamondUpgrade", GameInfo.CurrentDiamondAmount);
+        
     }
 
 
