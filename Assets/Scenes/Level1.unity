@@ -6629,6 +6629,8 @@ MonoBehaviour:
   Diamond: {fileID: 1536261859}
   UpdateGold: {fileID: 1994855219381528175}
   UpdateDiamond: {fileID: 1994855219067204594}
+  CurrentLevelText: {fileID: 1787826494}
+  NextLevelText: {fileID: 435757171}
 --- !u!1001 &654453473
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -22525,6 +22527,10 @@ MonoBehaviour:
   - {fileID: 5486885962286517767, guid: aedd687bc70cf1b4a9b6dbe350b9b32e, type: 3}
   Lego: {fileID: 6565724462531345871, guid: 048e5b1b3811cac4487323fb60895998, type: 3}
   offsetZ: 20
+  PosX:
+  - -1
+  - 0.25
+  - 1.5
 --- !u!4 &1724046358
 Transform:
   m_ObjectHideFlags: 0
@@ -29533,6 +29539,8 @@ MonoBehaviour:
   Diamond: {fileID: 0}
   UpdateGold: {fileID: 0}
   UpdateDiamond: {fileID: 0}
+  CurrentLevelText: {fileID: 0}
+  NextLevelText: {fileID: 0}
 --- !u!223 &6034427455150976030
 Canvas:
   m_ObjectHideFlags: 0

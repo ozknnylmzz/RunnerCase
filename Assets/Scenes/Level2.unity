@@ -6629,6 +6629,8 @@ MonoBehaviour:
   Diamond: {fileID: 1536261859}
   UpdateGold: {fileID: 1994855219381528175}
   UpdateDiamond: {fileID: 1994855219067204594}
+  CurrentLevelText: {fileID: 1787826494}
+  NextLevelText: {fileID: 1685201793}
 --- !u!1001 &654453473
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -29540,6 +29542,8 @@ MonoBehaviour:
   Diamond: {fileID: 0}
   UpdateGold: {fileID: 0}
   UpdateDiamond: {fileID: 0}
+  CurrentLevelText: {fileID: 0}
+  NextLevelText: {fileID: 0}
 --- !u!223 &6034427455150976030
 Canvas:
   m_ObjectHideFlags: 0
