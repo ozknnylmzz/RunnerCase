@@ -8,18 +8,21 @@ public class UIController : MonoBehaviour
 {
     [SerializeField] GameObject TopPlayScreen;
     [SerializeField] GameObject LevelEndScreen;
-   
+    [SerializeField] GameObject CurrentLevelCanvas;
+
     [SerializeField] TextMeshProUGUI Gold;
     [SerializeField] TextMeshProUGUI Diamond;
 
     [SerializeField] Text UpdateGold;
     [SerializeField] Text UpdateDiamond;
 
+
+
     string goldtxt;
     string diamondtxt;
     string diamondAmoutTxt;
     string goldAmoutTxt;
-  
+
 
     bool hasUpgrade;
 
@@ -30,8 +33,6 @@ public class UIController : MonoBehaviour
         //goldtxt = Gold.GetComponentsInChildren<TextMeshProUGUI>()[0].text;
         diamondAmoutTxt = LevelEndScreen.GetComponentsInChildren<Text>()[0].text;
         goldAmoutTxt = LevelEndScreen.GetComponentsInChildren<Text>()[1].text;
-     
-
     }
 
 
@@ -43,9 +44,9 @@ public class UIController : MonoBehaviour
     {
         if (other.name == "Finish")
         {
-           
-            UpdateGold.text = GameInfo.CurrentDiamondAmount.ToString();
-            UpdateDiamond.text = GameInfo.CurrentGoldAmount.ToString();
+            CurrentLevelCanvas.SetActive(false);
+            UpdateDiamond.text = GameInfo.CurrentDiamondAmount.ToString();
+            UpdateGold.text = GameInfo.CurrentGoldAmount.ToString();
             LevelEndScreen.SetActive(true);
         }
     }
@@ -60,12 +61,12 @@ public class UIController : MonoBehaviour
             GameInfo.CurrentGoldAmount = 0;
             UpdateDiamond.text = 0.ToString();
             UpdateGold.text = 0.ToString();
-             Gold.text  = GameInfo.GoldAmount.ToString();
+            Gold.text = GameInfo.GoldAmount.ToString();
             Diamond.text = GameInfo.DiamondAmount.ToString();
             hasUpgrade = true;
 
         }
-       
+
 
     }
     public void TopPlayButton()

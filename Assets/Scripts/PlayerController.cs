@@ -12,22 +12,22 @@ public class PlayerController : MonoBehaviour
     [SerializeField] Text CurrentLeveltxt;
     [SerializeField] Text NextLevel;
     [SerializeField] GameObject Camera;
-     GameObject TopPlayScreen;
+    GameObject TopPlayScreen;
     GameObject LevelEndScreen;
-  
+
     Animator animator;
 
-    
+    int levelBarValue;
 
     void Start()
     {
-        //diamondtxt = Currency.GetComponentsInChildren<TextMeshProUGUI>()[0];
-        //goldtxt = Currency.GetComponentsInChildren<TextMeshProUGUI>()[1];
+
+        LoadGameData();
         animator = GetComponentInChildren<Animator>();
         TopPlayScreen = GameObject.Find("TopPlayScreen");
-        LevelEndScreen=GameObject.Find("LevelEndScreen");
-        
-        
+        LevelEndScreen = GameObject.Find("LevelEndScreen");
+
+
 
     }
 
@@ -39,13 +39,7 @@ public class PlayerController : MonoBehaviour
 
 
 
-    private void OnEnable()
-    {
-        LevelBar.maxValue = 10;
-        LevelBar.value = 0;
-        LoadGameData();
 
-    }
     public void TopPlayButton()
     {
         Time.timeScale = 1;
@@ -78,7 +72,8 @@ public class PlayerController : MonoBehaviour
     {
         if (other.CompareTag("Gold"))
         {
-            LevelBar.value++;
+            levelBarValue++;
+            LevelBar.value=levelBarValue;
             animator.SetBool("hasState", true);
             GameInfo.CurrentGoldAmount++;
             //goldtxt.text = goldAmount.ToString();
@@ -89,34 +84,34 @@ public class PlayerController : MonoBehaviour
         }
         if (other.CompareTag("Diamond"))
         {
-            LevelBar.value++;
+            levelBarValue++;
+            LevelBar.value = levelBarValue;
             animator.SetBool("hasState", true);
+
             GameInfo.CurrentDiamondAmount++;
             Diamond.Play();
 
         }
         if (other.CompareTag("Obstacle"))
         {
-            GameInfo.CurrentGoldAmount--;
-            GameInfo.CurrentDiamondAmount--;
-            LevelBar.value--;
-            
+            if (GameInfo.CurrentGoldAmount > 0) GameInfo.CurrentGoldAmount--;
+            if (GameInfo.CurrentDiamondAmount > 0) GameInfo.CurrentDiamondAmount--;
+
+            levelBarValue--;
+            LevelBar.value = levelBarValue;
+
         }
         if (other.name == "Finish")
         {
             Camera.GetComponent<FinishLineCamera>().Rotate();
             GetComponent<CharacterInput>().enabled = false;
             animator.Play("Dance");
+
             SaveGameData();
         }
     }
 
 
-
-    private void OnTriggerStay(Collider other)
-    {
-        
-    }
 
     private void OnApplicationQuit()
     {
@@ -125,21 +120,25 @@ public class PlayerController : MonoBehaviour
 
     private void SaveGameData()
     {
-        PlayerPrefs.SetInt("CurrentLevel", GameInfo.CurrentLevelNumber+1);
+        PlayerPrefs.SetInt("CurrentLevel", GameInfo.CurrentLevelNumber + 1);
         PlayerPrefs.SetInt("GoldAmount", GameInfo.GoldAmount);
         PlayerPrefs.SetInt("DiamondAmount", GameInfo.DiamondAmount);
-        PlayerPrefs.SetInt("CurrentGoldUpgrade", GameInfo.CurrentGoldAmount);
-        PlayerPrefs.SetInt("CurrentDiamondUpgrade", GameInfo.CurrentDiamondAmount);
+        //PlayerPrefs.SetInt("CurrentGoldUpgrade", GameInfo.CurrentGoldAmount);
+        //PlayerPrefs.SetInt("CurrentDiamondUpgrade", GameInfo.CurrentDiamondAmount);
     }
+
+
 
     private void LoadGameData()
     {
+        LevelBar.maxValue = 10;
+        LevelBar.value = 0;
         GameInfo.CurrentLevelNumber = PlayerPrefs.GetInt("CurrentLevel", 1);
         GameInfo.GoldAmount = PlayerPrefs.GetInt("GoldAmount", 0);
         GameInfo.DiamondAmount = PlayerPrefs.GetInt("DiamondAmount", 0);
-        GameInfo.CurrentGoldAmount= PlayerPrefs.GetInt("CurrentGoldUpgrade", 0);
-        GameInfo.CurrentDiamondAmount=PlayerPrefs.GetInt("CurrentDiamondUpgrade", 0);
-        
+        GameInfo.CurrentGoldAmount = 0;
+        GameInfo.CurrentDiamondAmount = 0;
+
     }
 }
 
