@@ -11,7 +11,6 @@ public class UIController : MonoBehaviour
     [SerializeField] GameObject LevelEndScreen;
     [SerializeField] GameObject CurrentLevelCanvas;
 
-    //[SerializeField] TextMeshProUGUI Gold;
     [SerializeField] TextMeshProUGUI StackAmount;
 
     [SerializeField] Text UpdateGold;
@@ -19,27 +18,16 @@ public class UIController : MonoBehaviour
     [SerializeField] Text CurrentLevelText;
     [SerializeField] Text NextLevelText;
 
-
-   
-  
-
-
     bool hasUpgrade;
-
-
-  
-
 
     void Start()
     {
-       
-       
-         StackAmount.text =GameInfo.StartStackAmount.ToString();
+        StackAmount.text = GameInfo.StartStackAmount.ToString();
         CurrentLevelText.text = (GameInfo.CurrentLevelNumber).ToString();
-        NextLevelText.text=(GameInfo.CurrentLevelNumber+1).ToString();
+        NextLevelText.text = (GameInfo.CurrentLevelNumber + 1).ToString();
     }
 
-   
+
     private void OnTriggerEnter(Collider other)
     {
         if (other.name == "Finish")
@@ -50,20 +38,43 @@ public class UIController : MonoBehaviour
             LevelEndScreen.SetActive(true);
         }
     }
+
+    private IEnumerator IncreaseStack()
+    {
+        float elapsedTime = 0f;
+        float timeIncrement = 0.1f;
+        float totalStack=GameInfo.CurrentDiamondAmount + GameInfo.CurrentGoldAmount;
+        while (elapsedTime < totalStack)
+        {
+            yield return new WaitForSeconds(timeIncrement);
+
+            GameInfo.StartStackAmount++;
+          
+            StackAmount.text = GameInfo.StartStackAmount.ToString();
+              totalStack--;
+         
+        }
+
+    }
+
+   
+
+
     public void UpgradeButton()
     {
         if (!hasUpgrade)
         {
-           
-            GameInfo.StartStackAmount += GameInfo.CurrentDiamondAmount+GameInfo.CurrentGoldAmount;
-            
+            //GameInfo.StartStackAmount += GameInfo.CurrentDiamondAmount + GameInfo.CurrentGoldAmount;
+            //GameInfo.CurrentDiamondAmount = 0;
+            //GameInfo.CurrentGoldAmount = 0;
+            StartCoroutine(IncreaseStack());
             GameInfo.CurrentDiamondAmount = 0;
             GameInfo.CurrentGoldAmount = 0;
             UpdateDiamond.text = 0.ToString();
             UpdateGold.text = 0.ToString();
-            StackAmount.text = GameInfo.StartStackAmount.ToString();
+            //StackAmount.text = GameInfo.StartStackAmount.ToString();
             GetComponent<PlayerController>().SaveGameData();
-            
+
             hasUpgrade = true;
 
         }
@@ -75,8 +86,8 @@ public class UIController : MonoBehaviour
         if (GameInfo.Current_LevelNumber == 5) GameInfo.Current_LevelNumber = 0;
 
         GameInfo.Current_LevelNumber++;
-        Application.LoadLevel(GameInfo.Current_LevelNumber);
-     
+        SceneManager.LoadSceneAsync(GameInfo.Current_LevelNumber);
+
     }
 
     public void TopPlayButton()

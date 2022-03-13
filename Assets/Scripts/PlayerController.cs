@@ -101,6 +101,7 @@ public class PlayerController : MonoBehaviour
             Camera.GetComponent<FinishLineCamera>().Rotate();
             GetComponent<CharacterInput>().enabled = false;
             animator.Play("Dance");
+            GetComponent<AudioSource>().Play();
         }
     }
 
