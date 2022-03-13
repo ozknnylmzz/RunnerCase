@@ -13,7 +13,7 @@ public class PlayerController : MonoBehaviour
     [SerializeField] Text NextLevel;
     [SerializeField] GameObject Camera;
     GameObject TopPlayScreen;
-    GameObject LevelEndScreen;
+   
 
     Animator animator;
 
@@ -23,29 +23,18 @@ public class PlayerController : MonoBehaviour
     void Start()
     {
         Particles = new ParticleSystem[4];
-        StartGameData();
-       
+        
+        LevelBar.maxValue = 10;
+        LevelBar.value = 0;
         LoadGameData();
 
         animator = GetComponentInChildren<Animator>();
         TopPlayScreen = GameObject.Find("TopPlayScreen");
-        LevelEndScreen = GameObject.Find("LevelEndScreen");
         Particles[0] = GetComponentsInChildren<ParticleSystem>()[0];
         Particles[1] = GetComponentsInChildren<ParticleSystem>()[1];
         Particles[2] = GetComponentsInChildren<ParticleSystem>()[2];
         Particles[3] = GetComponentsInChildren<ParticleSystem>()[3];
-
-
-
     }
-
-
-    void Update()
-    {
-
-    }
-
-
 
 
     public void TopPlayButton()
@@ -59,20 +48,12 @@ public class PlayerController : MonoBehaviour
     {
         if (other.CompareTag("Gold"))
         {
-
             animator.SetBool("hasState", false);
-
             Destroy(other.gameObject);
-
-            //player üstünde particle ve ses
-            //altýn objesýný yok et 
-            //uý kýsmýný setle
         }
         if (other.CompareTag("Diamond"))
         {
-
             animator.SetBool("hasState", false);
-
             Destroy(other.gameObject);
         }
     }
@@ -87,14 +68,9 @@ public class PlayerController : MonoBehaviour
             LevelBar.value = levelBarValue;
             animator.SetBool("hasState", true);
             GameInfo.CurrentGoldAmount++;
-
+            other.GetComponent<AudioSource>().Play();
             Particles[0].Play();
             Particles[2].Play();
-
-
-            //player üstünde particle ve ses
-            //altýn objesýný yok et 
-            //uý kýsmýný setle
         }
         if (other.CompareTag("Diamond"))
         {
@@ -103,6 +79,7 @@ public class PlayerController : MonoBehaviour
             animator.SetBool("hasState", true);
             Current_DiamondAmount++;
 
+            other.GetComponent<AudioSource>().Play();
             GameInfo.CurrentDiamondAmount++;
             if (GameInfo.CurrentDiamondAmount % 5 == 0) Particles[1].Play();
             else Particles[0].Play();
@@ -114,23 +91,18 @@ public class PlayerController : MonoBehaviour
             if (GameInfo.CurrentGoldAmount > 0) GameInfo.CurrentGoldAmount--;
             if (GameInfo.CurrentDiamondAmount > 0) GameInfo.CurrentDiamondAmount--;
             Particles[3].Play();
+            other.GetComponent<AudioSource>().Play();
             levelBarValue--;
             LevelBar.value = levelBarValue;
 
         }
         if (other.name == "Finish")
         {
-
             Camera.GetComponent<FinishLineCamera>().Rotate();
             GetComponent<CharacterInput>().enabled = false;
             animator.Play("Dance");
-
-
-
         }
     }
-
-
 
     private void OnApplicationQuit()
     {
@@ -141,33 +113,18 @@ public class PlayerController : MonoBehaviour
     {
         PlayerPrefs.SetInt("CurrentLevel", GameInfo.CurrentLevelNumber + 1);
         PlayerPrefs.SetInt("StackAmount", GameInfo.StartStackAmount);
-      
-        //PlayerPrefs.SetInt("CurrentGoldUpgrade", GameInfo.CurrentGoldAmount);
-        //PlayerPrefs.SetInt("CurrentDiamondUpgrade", GameInfo.CurrentDiamondAmount);
+        PlayerPrefs.SetInt("CurrentGoldUpgrade", GameInfo.CurrentGoldAmount);
+        PlayerPrefs.SetInt("CurrentDiamondUpgrade", GameInfo.CurrentDiamondAmount);
 
     }
 
-
-    public void StartGameData()
-    {
-        LevelBar.maxValue = 10;
-        LevelBar.value = 0;
-        GameInfo.CurrentGoldAmount = 0;
-        GameInfo.CurrentDiamondAmount = 0;
-        
-
-    }
     public void LoadGameData()
     {
 
         GameInfo.CurrentLevelNumber = PlayerPrefs.GetInt("CurrentLevel", 1);
         GameInfo.StartStackAmount = PlayerPrefs.GetInt("StackAmount", 0);
-
-        //GoldAmount = PlayerPrefs.GetInt("GoldAmount", 0);
-
-        //CurrentStackUpgrade = PlayerPrefs.GetInt("CurrentUpgradeIndex", 0);
-
-
+        GameInfo.CurrentGoldAmount = PlayerPrefs.GetInt("CurrentGoldAmount", 0);
+        GameInfo.CurrentDiamondAmount = PlayerPrefs.GetInt("CurrentDiamondAmount", 0);
     }
 }
 

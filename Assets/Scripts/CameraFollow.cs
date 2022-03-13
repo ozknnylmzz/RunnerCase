@@ -7,10 +7,7 @@ public class CameraFollow : MonoBehaviour
     [SerializeField] GameObject Target;
     [SerializeField] Vector3 Distance;
     [SerializeField] Vector3 DancePos;
-    float lerpTime = 1.0f;
-
-    //private static CameraFollow instance;
-    //public static CameraFollow Singleton { get => instance; set => instance = value; }
+ 
     void Start()
     {
 

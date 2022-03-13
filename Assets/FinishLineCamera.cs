@@ -5,16 +5,6 @@ using UnityEngine;
 public class FinishLineCamera : MonoBehaviour
 {
     
-    void Start()
-    {
-        
-    }
-
-    
-    void Update()
-    {
-        
-    }
     public void Rotate()
     {
         GetComponent<CameraFollow>().enabled = false;

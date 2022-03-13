@@ -76,6 +76,7 @@ public class UIController : MonoBehaviour
 
         GameInfo.Current_LevelNumber++;
         Application.LoadLevel(GameInfo.Current_LevelNumber);
+     
     }
 
     public void TopPlayButton()
