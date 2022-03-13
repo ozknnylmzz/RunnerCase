@@ -1770,8 +1770,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Currency: {fileID: 551946654}
-  Gold: {fileID: 721475145}
-  Diamond: {fileID: 2096889753}
   LevelBar: {fileID: 367610279}
   CurrentLeveltxt: {fileID: 1787826494}
   NextLevel: {fileID: 1685201793}
@@ -1806,10 +1804,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   TopPlayScreen: {fileID: 6034427453662995676}
   LevelEndScreen: {fileID: 775245703404010708}
+  CurrentLevelCanvas: {fileID: 0}
   Gold: {fileID: 6034427454187519298}
   Diamond: {fileID: 1536261859}
   UpdateGold: {fileID: 1994855219381528175}
   UpdateDiamond: {fileID: 1994855219067204594}
+  CurrentLevelText: {fileID: 0}
+  NextLevelText: {fileID: 0}
 --- !u!1001 &654453473
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -8098,6 +8099,7 @@ MonoBehaviour:
   - {fileID: 5486885962286517767, guid: aedd687bc70cf1b4a9b6dbe350b9b32e, type: 3}
   Lego: {fileID: 6565724462531345871, guid: 048e5b1b3811cac4487323fb60895998, type: 3}
   offsetZ: 20
+  PosX: []
 --- !u!4 &1724046358
 Transform:
   m_ObjectHideFlags: 0
@@ -15232,10 +15234,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   TopPlayScreen: {fileID: 6034427453662995676}
   LevelEndScreen: {fileID: 775245703404010708}
+  CurrentLevelCanvas: {fileID: 0}
   Gold: {fileID: 0}
   Diamond: {fileID: 0}
   UpdateGold: {fileID: 0}
   UpdateDiamond: {fileID: 0}
+  CurrentLevelText: {fileID: 0}
+  NextLevelText: {fileID: 0}
 --- !u!223 &6034427455150976030
 Canvas:
   m_ObjectHideFlags: 0

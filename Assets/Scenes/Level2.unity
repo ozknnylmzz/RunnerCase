@@ -6296,7 +6296,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: 2
+  m_Text: 
 --- !u!222 &435757172
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -6629,7 +6629,7 @@ MonoBehaviour:
   Diamond: {fileID: 1536261859}
   UpdateGold: {fileID: 1994855219381528175}
   UpdateDiamond: {fileID: 1994855219067204594}
-  CurrentLevelText: {fileID: 1787826494}
+  CurrentLevelText: {fileID: 1772693147}
   NextLevelText: {fileID: 1685201793}
 --- !u!1001 &654453473
 PrefabInstance:
@@ -22224,8 +22224,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 1}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 303, y: 896.0001}
-  m_SizeDelta: {x: 540, y: 128}
+  m_AnchoredPosition: {x: 246, y: 896.0001}
+  m_SizeDelta: {x: 492.816, y: 128}
   m_Pivot: {x: 1, y: 1}
 --- !u!114 &1609327246
 MonoBehaviour:
@@ -22525,7 +22525,7 @@ MonoBehaviour:
   - {fileID: 1616119211027848858, guid: 3bbe84e0091020740bf2056ed1771a0f, type: 3}
   - {fileID: 972512716110323880, guid: eeefbe65397a2e04395496ec66749fb7, type: 3}
   - {fileID: 5486885962286517767, guid: aedd687bc70cf1b4a9b6dbe350b9b32e, type: 3}
-  - {fileID: 5486885962286517767, guid: aedd687bc70cf1b4a9b6dbe350b9b32e, type: 3}
+  - {fileID: 1616119211027848858, guid: 3bbe84e0091020740bf2056ed1771a0f, type: 3}
   - {fileID: 1616119211027848858, guid: 3bbe84e0091020740bf2056ed1771a0f, type: 3}
   - {fileID: 5486885962286517767, guid: aedd687bc70cf1b4a9b6dbe350b9b32e, type: 3}
   Lego: {fileID: 6565724462531345871, guid: 048e5b1b3811cac4487323fb60895998, type: 3}
@@ -22837,7 +22837,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: 1
+  m_Text: 
 --- !u!222 &1787826495
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -29282,8 +29282,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 1}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 475, y: 895}
-  m_SizeDelta: {x: 540, y: 128}
+  m_AnchoredPosition: {x: 448, y: 896}
+  m_SizeDelta: {x: 511.506, y: 128}
   m_Pivot: {x: 1, y: 1}
 --- !u!114 &6034427454064117277
 MonoBehaviour:

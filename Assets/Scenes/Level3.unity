@@ -6105,7 +6105,7 @@ GameObject:
   - component: {fileID: 426850453}
   - component: {fileID: 426850452}
   m_Layer: 5
-  m_Name: StackIcon
+  m_Name: DiamondIcon
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -22066,7 +22066,7 @@ GameObject:
   - component: {fileID: 1536261860}
   - component: {fileID: 1536261859}
   m_Layer: 5
-  m_Name: StackAmount
+  m_Name: DiamondAmount
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -22199,7 +22199,7 @@ GameObject:
   - component: {fileID: 1609327245}
   - component: {fileID: 1609327246}
   m_Layer: 5
-  m_Name: Stack
+  m_Name: Diamond
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
