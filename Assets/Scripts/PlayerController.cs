@@ -26,7 +26,7 @@ public class PlayerController : MonoBehaviour
         
         LevelBar.maxValue = 10;
         LevelBar.value = 0;
-        LoadGameData();
+      
 
         animator = GetComponentInChildren<Animator>();
         TopPlayScreen = GameObject.Find("TopPlayScreen");
@@ -101,32 +101,11 @@ public class PlayerController : MonoBehaviour
             Camera.GetComponent<FinishLineCamera>().Rotate();
             GetComponent<CharacterInput>().enabled = false;
             animator.Play("Dance");
-            GetComponent<AudioSource>().Play();
+            
         }
     }
 
-    private void OnApplicationQuit()
-    {
-        SaveGameData();
-    }
-
-    public void SaveGameData()
-    {
-        PlayerPrefs.SetInt("CurrentLevel", GameInfo.CurrentLevelNumber + 1);
-        PlayerPrefs.SetInt("StackAmount", GameInfo.StartStackAmount);
-        PlayerPrefs.SetInt("CurrentGoldUpgrade", GameInfo.CurrentGoldAmount);
-        PlayerPrefs.SetInt("CurrentDiamondUpgrade", GameInfo.CurrentDiamondAmount);
-
-    }
-
-    public void LoadGameData()
-    {
-
-        GameInfo.CurrentLevelNumber = PlayerPrefs.GetInt("CurrentLevel", 1);
-        GameInfo.StartStackAmount = PlayerPrefs.GetInt("StackAmount", 0);
-        GameInfo.CurrentGoldAmount = PlayerPrefs.GetInt("CurrentGoldAmount", 0);
-        GameInfo.CurrentDiamondAmount = PlayerPrefs.GetInt("CurrentDiamondAmount", 0);
-    }
+    
 }
 
 

@@ -6,12 +6,8 @@ using UnityEngine.SceneManagement;
 public class GameManager : MonoBehaviour
 {
     [SerializeField] GameObject[] Objects;
-    [SerializeField] GameObject Lego;
-   
 
-    [SerializeField] float offsetZ = 10f;
-  
-
+    [SerializeField] float offsetZ ;
     [SerializeField] float[] PosX;
 
     float yPos = 1f;
@@ -24,15 +20,9 @@ public class GameManager : MonoBehaviour
     void Start()
     {
         Time.timeScale = 0;
-        
-     
-
-
         collectObjCreated();
     }
 
-
-   
     void collectObjCreated()
     {
         for (int i = 0; i < 4; i++)
@@ -52,14 +42,10 @@ public class GameManager : MonoBehaviour
                     
                     Instantiate(item, new Vector3(PosX[a], yPos, zPos + t), Quaternion.identity);
                     t++;
-                   
-                   
-                   
                 }
                 a++;
                 t = 0;
             }
-            
             zPos += offsetZ;
         }
     }

@@ -4,12 +4,14 @@ using UnityEngine;
 
 public class FinishLineCamera : MonoBehaviour
 {
+    [SerializeField] Vector3 danceCameraPos;
     
     public void Rotate()
     {
         GetComponent<CameraFollow>().enabled = false;
-        transform.position = new Vector3(0.5f, 4, 105.5f);
-        transform.localEulerAngles = new Vector3(42, -180, 0);
-        
+        transform.position = danceCameraPos;
+        transform.localEulerAngles = new Vector3(56.5f, -180, 0);
+
     }
+    
 }

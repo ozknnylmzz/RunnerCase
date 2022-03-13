@@ -4,7 +4,8 @@ using UnityEngine;
 
 public class FinishScript : MonoBehaviour
 {
-    [SerializeField]
+    [SerializeField] Material[] FinisLine;
+    
 
     void Start()
     {
